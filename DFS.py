@@ -25,22 +25,24 @@ def DFS_traversal(G, nodes, start):
 
 # --- DFS_traversal , none-recursive ,input : Graph:{"node":["adjacent node",...],...}  , start node          
 
-def DFS_traversal_G(G,start):
-    visited=set()
-    stack=[start]
-    traversal=[]
-    count=0
+def DFS_traversal_G(G, start):
+    if start not in G:  # non-existent start node
+        return []
+    
+    visited = set()
+    stack = [start]
+    traversal = []
+    
     while stack:
-        count+=1
-        if count >15:
-            break
-        node=stack.pop() 
-        traversal.append(node)
-        visited.add(nodes)
-        for nodes in G["node"] :
-            if nodes not in visited :
-                stack.append(nodes)
+        node = stack.pop()
+        if node not in visited:
+            traversal.append(node)
+            visited.add(node)
+            # Push unvisited neighbors to the stack
+            stack.extend(neighbor for neighbor in reversed(G[node]) if neighbor not in visited)
+    
     return traversal
+
                 
               
 
@@ -53,15 +55,15 @@ def DFS_traversal_G(G,start):
 
 
 
-A=[[0,1,1,1,0,0],
-   [1,0,0,0,1,0],
-   [1,0,0,0,0,1],
-   [1,0,0,0,0,1],
-   [0,1,0,0,0,0],
-   [0,0,1,1,0,0]]
-nodes=["a","b","c","d","e","f"]
+# A=[[0,1,1,1,0,0],
+#    [1,0,0,0,1,0],
+#    [1,0,0,0,0,1],
+#    [1,0,0,0,0,1],
+#    [0,1,0,0,0,0],
+#    [0,0,1,1,0,0]]
+# nodes=["a","b","c","d","e","f"]
 
-print(DFS_traversal(A,nodes,"a"))
+# print(DFS_traversal(A,nodes,"a"))
 
 # G={"a":["b","c","d"],
 #    "b":["a","e"],
