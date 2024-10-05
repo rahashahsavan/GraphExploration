@@ -5,11 +5,7 @@ def DFS_traversal(G, nodes, start):
     traversal_list = []
     start_index = nodes.index(start)
     stack = [start_index]
-    count=0
     while stack:
-        count+=1
-        if count >15:
-            break
         node = stack.pop()
         
         
